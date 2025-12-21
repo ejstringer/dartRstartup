@@ -32,7 +32,7 @@ gl.set.verbosity(3)
 
 #library(dartRintro) # for tutorial data
 source('./www/reassign_ind_function.R')
-library(dartRintro)
+library(dartRstartup)
 
 ```
 
@@ -52,13 +52,13 @@ The first part of this tutorial are the worked examples, where we walk you throu
 
 **List of worked examples:**
 
-- [Worked Ex 2-1: Data Structures] *optpional*
+- [Worked Ex 2-1: Data Structures] *optional*
 
-- [Worked Ex 2-2: I/O] *optpional*
+- [Worked Ex 2-2: I/O] *optional*
 
-- [Worked Ex 2-3: Controlling Workflow] *optpional*
+- [Worked Ex 2-3: Controlling Workflow] *optional*
 
-- [Worked Ex 2-4:Functions] *optpional*
+- [Worked Ex 2-4:Functions] *optional*
 
 - [Worked Ex 3-1: Data Structures and I/O]
 
@@ -1043,7 +1043,19 @@ For a more detailed account of working with the apply family of functions in R, 
 
 #### Winding up
 
-You have now finished Worked Example 2-4 which brings us to the end of the Worked Examples for Chapter 4. Return to the eBook for further instructions.
+You have now finished Worked Example 2-4 which brings us to the end of the Worked Examples for Chapter 2. 
+If you want to try out some other R tutorials we recommend trying the [R Programming](https://github.com/swirldev/swirl_courses) course from the r package **swirl**. It teaches you R in your console. 
+
+Here is the code to get started.
+
+```{r eval=FALSE}
+library(swirl)
+install_course("R Programming")
+swirl()
+```
+
+Got the hang of R? If so, let’s move on! Return to the eBook for for chapter 3.
+
 
 [Back to Menu](#custom){.menuButton}
 
@@ -1127,6 +1139,7 @@ and you can check the population and individual names
 popNames(gl)
 indNames(gl)[1:10]# Only first 10 entries shown
 ```
+###
 
 We saw that we had a number of individual metrics when we examined the contents of the `gl` object by simply typing its name. We can remind ourselves of these:
 
@@ -1134,12 +1147,15 @@ We saw that we had a number of individual metrics when we examined the contents 
 names(gl@other$ind.metrics)
 ```
 
+###
+
 Examine the contents of the individual metrics, in this case the first 10 values of the attribute `sex`:
 
 ```{r 31e, exercise = TRUE, exercise.setup = "datagl"}
 # Only first 10 entries shown
 gl@other$ind.metrics$sex[1:10]
 ```
+###
 
 Try this on some other individual metrics.
 
@@ -1153,6 +1169,7 @@ Try this on some other individual metrics.
 gl@other$ind.metrics$age[1:12]
 ```
 
+###
 
 To examine the SNP genotypes themselves, use
 
@@ -1203,6 +1220,7 @@ rm(gl.new)
 
 That brings us to the end of the worked example. You are now a pro.
 
+We are done with the worked example in Chapter 3. Try the [Exercises](#custom2) for Chapter 3 and then head back to the ebook for Chapter 4. 
 
 
 [Back to Menu](#custom){.menuButton}
@@ -1224,6 +1242,8 @@ First, load in the dataset using
 gl <- gl.load("Tympo_SNP_raw.RData")
 ```
 
+###
+
 ```{r e2, echo = FALSE}
 
 gl <- gl.load("./www/Tympo_SNP_raw.RData")
@@ -1239,6 +1259,8 @@ gl
 
 Note: If it is a SNP dataset, the ploidy of each individual will be reported as (range 2-2). If it is a SilicoDArT dataset, the ploidy will be reported as (range: 1-1)
 
+###
+
 Displayed are the number of genotypes (individuals/specimens/samples), the size of the genlight object, and the number of missing values. The ploidy value should be 2-2 for SNP data for a diploid organism (dartR does not have support for polyploid organisms), so if it is something else, you have a problem with your data. SilicoDArT presence absence data has the ploidy set to 1-1.
 
 Slots containing important information are listed, such as `@position`, which lists the position of the SNPs in the sequence tags (referenced from 0 as position 1). The `@other` slot is particularly important, because it holds the `loc.metrics` from Diversity Arrays Technology Pty Ltd (DArT) and your `ind.metrics`. 
@@ -1249,13 +1271,17 @@ If any of the optional content slots indicated above are missing, consider runni
 gl <- gl.compliance.check(gl)
 ```
 
-which will render the dartR genlight object compliant with dartR. This is particularly important if you have generated your data outside the DArT environment.
+###
+
+This will render the dartR genlight object compliant with dartR. This is particularly important if you have generated your data outside the DArT environment.
 
 To obtain a basic summary for a dartR genlight object, use
 
 ```{r 41c, exercise = TRUE, exercise.setup = "datagl"}
 gl.report.basics(gl)
 ```
+
+###
 
 This is a very comprehensive summary of the dataset.
 
@@ -1266,6 +1292,8 @@ cr <- gl@other$loc.metrics$CallRate
 hist(cr) # This is a base R statement
 
 ```
+
+###
 
 Remind yourself of the variables in the metadata using 
 
@@ -1279,6 +1307,7 @@ and
 names(gl@other$ind.metrics)
 ```
 
+###
 
 Play around a little more, examining different individual and locus metrics that interest you.
 
@@ -1300,6 +1329,7 @@ Note the distinction between `popNames(gl)` and `pop(gl)`. The two are related b
 ## try some adegenet accessors here
 ```
 
+###
 
 To convert your dartR genlight object to a conventional matrix, use
 
@@ -1307,6 +1337,8 @@ To convert your dartR genlight object to a conventional matrix, use
 m <- as.matrix(gl)
 m[1:5,1:8]
 ```
+
+### 
 
 These are all useful for interrogating your genlight object, and of course can be used in your r scripts to subset and manipulate your data.
 
@@ -1322,11 +1354,15 @@ This **Call Rate** function summarises CallRate values for loci.  A locus can fa
 gl.report.callrate(gl, method="loc")
 ```
 
+###
+
 The Call Rate function with method=”ind” summarises Call Rate values for individuals. 
 
 ```{r 41j, exercise = TRUE, exercise.setup = "datagl"}
 gl.report.callrate(gl, method="ind")
 ```
+
+###
 
 The **reproducibility** function below summarises repAvg (SNP) or reproducibility (SilicoDArT) values for each locus. DArT runs technical replicates that allow for an assessment of the reliability of the scoring for each locus. 100% means that identical results were obtained for both technical replicates.
 
@@ -1334,11 +1370,15 @@ The **reproducibility** function below summarises repAvg (SNP) or reproducibilit
 gl.report.reproducibility(gl)
 ```
 
+###
+
 The **read depth** function reports an estimate of average read depth for each locus. Adequate read depth is desirable for analyses requiring accurate calls of heterozygotes in particular. Matched with `gl.filter.rdepth()` (refer Chapter 5). For further help, type `?gl.report.rdepth` and to use the function, type
 
 ```{r 41l, exercise = TRUE, exercise.setup = "datagl"}
 gl.report.rdepth(gl)
 ```
+
+###
 
 Linkage is an important consideration for many analyses. Fortunately, SNPs on separate sequence tags can be considered to assort independently because of the sparse nature of their sampling across the genome. However, if two SNPs occur in a non-recombining block of sequence, they will be co-inherited. This occurs for SNPs that reside in the non-recombining region of the sex chromosomes. They are referred to as sex-linked. The sex linkage report function identifies putative sex-linked SNP loci. Matched with `gl.filter.sexlinked()` (refer Chapter 5). For further help, type `?gl.report.sexlinked`
 
@@ -1346,11 +1386,15 @@ Linkage is an important consideration for many analyses. Fortunately, SNPs on se
 gl.report.sexlinked(gl, system = 'xy')
 ```
 
+###
+
 Sequence tags can often contain more than one SNP, potentially up to 7 SNPs in a sequence tag of 69 bp. Alleles at these SNP loci are potentially co-inherited and so are linked. The **secondaries** function identifies and counts the number of SNP loci in each sequence tag. It has the added feature of modelling the frequency distribution of SNP locus counts and estimating the zero class, that is, the number of (unreported) sequence tags that are invariant. This can be useful for correcting some estimates, such as heterozygosity. Matched to `gl.filter.secondaries()`. For further help, type `?gl.report.secondaries`.
 
 ```{r 41n, exercise = TRUE, exercise.setup = "datagl"}
 gl.report.secondaries(gl)
 ```
+
+###
 
 The **monomorphs** report function provides a count of polymorphic and monomorphic loci. Matched with gl.filter.monomorphs()(refer Chapter 5). For further help, type ?gl.report.monomorphs. Many functions also have a mono.rm option which, if TRUE, filters monomorphic loci.
 
@@ -1366,11 +1410,15 @@ gl.report.monomorphs(gl)
 gl.report.hamming(gl) # takes too long or is broken
 ```
 
+###
+
 **Tag lengths** (each bearing one or more SNPs) can vary substantially, typically from 20bp to 69 bp in the case of DArT data. The tag length script reports a frequency tabulation of sequence tag lengths. Matched with `gl.filter.taglength()` (refer Chapter 5). For further help, type `?gl.report.taglength`.
 
 ```{r 41q, exercise = TRUE, exercise.setup = "datagl"}
 gl.report.taglength(gl)
 ```
+
+###
 
 The **overshoot** report deals with a rare anomaly. Occasionally the adaptor sequence has close sequence homology with part of the sequence tag. When this occurs part of the sequence tag is eliminated and sometimes this carries the SNP with it. This function reports loci for which the SNP has been trimmed along with the adaptor sequence. Matched with `gl.filter.overshoot()` (refer Chapter 5). For further help, type `?gl.report.overshoot`.
 
@@ -1378,13 +1426,11 @@ The **overshoot** report deals with a rare anomaly. Occasionally the adaptor seq
 gl.report.overshoot(gl)
 ```
 
-
 ### Finishing up
 
 At this point you should have a good grasp on how to interrogate your dataset using the dartR report functions. 
 
-You can now return to Chapter 4 of the eBook and move to manipulating the contents of a SNP or SilicoDArT dataset, or move to the Exercises for Chapter 4 and try Exercises 4-1 and 4-2.
-
+You can now return to Chapter 4 of the eBook and move to manipulating the contents of a SNP or SilicoDArT dataset, or move to the [Exercises](#custom2) for Chapter 4 and try Exercises 4-1 and 4-2.
 
 [Back to Menu](#custom){.menuButton}
 
@@ -1409,6 +1455,8 @@ Check to see what populations object `gl` has defined.
 popNames(gl)
 ```
 
+###
+
 Now check the sample sizes.
 
 
@@ -1425,6 +1473,9 @@ We make the decision to delete the populations that has only a single sample fro
 gl.new <- gl.drop.pop(gl, pop.list=c('Unknown'))
 popNames(gl.new)
 ```
+
+###
+
 The output confirms that the two populations have been deleted, but also issues a warning that monomorphic loci may have arisen with the deletion of the two populations. If this is undesirable, we can run the above command with the parameter `mono.rm=TRUE`. 
 
 ```{r 42d, exercise = TRUE, exercise.setup = "datagl"}
@@ -1432,8 +1483,9 @@ gl.new <- gl.drop.pop(gl, pop.list=c('Unknown'),
                       mono.rm = TRUE)
 ```
 
+One can also remove monomorphic loci using `gl.filter.monomorphs()`.
 
-One can also remove monomorphic loci using `gl <- gl.filter.monomorphs(gl)`
+###
 
 How many monomorphic loci were detected, and if any, deleted. 
 See also `gl.keep.pop()` which allows you to specify populations to keep rather than populations to delete.
@@ -1448,12 +1500,16 @@ gl.new <- gl.merge.pop(gl, old=c("Royalla", "Googong"),
 popNames(gl.new)
 ```
 
+###
+
 Populations can also be renamed.
 
 ```{r 42f, exercise = TRUE, exercise.setup = "datagl"}
 gl.new <- gl.rename.pop(gl,old="Kowen",new="Queanbeyan")
 popNames(gl.new)
 ```
+
+###
 
 These functions do not change the underlying `ind.metrics`. In case we want to change population assignment momentarily, let's save the new population assignments as a column in `ind.metrics`. Use `head()` to check it has been saved as a new column. 
 
@@ -1473,6 +1529,8 @@ gl.new <- gl.reassign.pop(gl, as.pop="year")
 popNames(gl.new) #confirm change
 ```
 
+###
+
 This will replace the existing population assignments with values of the individual metric year of capture, shown when we check the `popNames()`. 
 
 Some functions allow the temporary assignment of an individual metric as the population attribute. For example,
@@ -1482,6 +1540,8 @@ gl.new <- gl.drop.pop(gl, pop.list="2006",
                           as.pop="year")
 table(gl.new@other$ind.metrics$year) # confirm change
 ```
+
+###
 
 Confirm that the metrics for `year` no longer contains `2006`.
 
@@ -1535,11 +1595,15 @@ Deleting individuals is essentially done in the same way as deleting populations
 indNames(gl)[1:10] # showing first ten individuals
 ```
 
+###
+
 Three individuals have been misclassified and their provenance is uncertain. We need to remove these. Again, monomorphic loci can arise with the deletion of populations or individuals, so we apply the `mono.rm=TRUE` parameter.
 
 ```{r 42m, exercise = TRUE, exercise.setup = "datagl"}
 gl <- gl.drop.ind(gl,c("AA24149", "AA24002", "AA24001"), mono.rm=TRUE)
 ```
+
+###
 
 Note that no monomorphic loci were created by the removal of these individuals. Also note that had the three individuals been the sole individuals in a population, then that population assignment would have been removed also. In this case, all populations were retained.
 
@@ -1554,11 +1618,15 @@ To subsample individuals in a genlight object containing SNP or SilicoDArT data,
 gl2 <- gl.subsample.ind(gl, n=50, by.pop = FALSE, replace=FALSE)
 ```
 
+###
+
 To subsample individuals within populations, use the `by.pop` parameter set to `TRUE`.
 
 ```{r 42o, exercise = TRUE, exercise.setup = "datagl"}
 gl2 <- gl.subsample.ind(gl, n=5, by.pop=TRUE, replace=FALSE)
 ```
+
+###
 
 Setting the replacement parameter to `TRUE` will subsample with replacement, so an individual could conceivably be included twice in the new dataset.
 
@@ -1583,6 +1651,8 @@ To subsample loci in a genlight object containing SNP or SilicoDArT data, use
 gl2 <- gl.subsample.loc(gl, n=1000, replace = FALSE)
 ```
 
+###
+
 Note that the default for the `replace` parameter is `FALSE` for `gl.subsample.ind()` and `TRUE` for `gl.subsample.loc()`. Best to be explicit.
 
 Subsampling loci might be of use for bootstrapping (`replace=TRUE`) or when trying out a complex script with a smaller subset of data (`replace=FALSE`). 
@@ -1591,9 +1661,12 @@ Subsampling loci might be of use for bootstrapping (`replace=TRUE`) or when tryi
 
 We have created files that we will not use again, so they should be removed from the workspace. Check the list under the tab Environment, and use `rm()` to remove objects that will not be of further use, such as `gl2`.
 
+
+We are done with the worked example in Chapter 4. Try the rest of the [Exercises](#custom2) for Chapter 4 and then head back to the ebook for Chapter 5 - filtering. 
 [Back to Menu](#custom){.menuButton}
 
 ## Worked Ex 5-1: Filtering
+###
 
 This worked example will take you by the hand and lead you through the analyses for filtering loci and individuals based on specified thresholds. Those thresholds are typically determined using the report functions introduced in Chapter 3, though often the default values will suffice. We will work again with the real dataset on the Canberra grassland earless dragon introduced in Chapter 3. 
 
@@ -1619,12 +1692,14 @@ gl <- gl.load("./www/Tympo_SNP_raw.RData")
 
 Quickly examine the contents of your genlight object. 
 
-```{r}
+```{r exx51, exercise = TRUE, exercise.setup = "datagl"}
 nInd(gl)
 nLoc(gl)
 nPop(gl)
 table(pop(gl))
 ```
+
+###
 
 If all is well, proceed to filtering. Note that the order in which filtering is undertaken is complex, and depends very much on the context and the analyses to follow. Refer to the section on nuances in Chapter 5 of the eBook. The order given in what follows is arbitrary.
 
@@ -1649,7 +1724,7 @@ Here you can see that the call rate for most loci is close to 100%, but that the
 gl <- gl.filter.callrate(gl, threshold=0.95)
 ```
 
-can see from the text that filtering at a threshold of 0.95 will result in the loss of 3,541 loci, or 64% of loci. Substantial data loss, but for most purposes, this level of filtering of poorly called loci is likely to be satisfactory. The results of the filtering are shown as a before-after plot.
+can see from the text that filtering at a threshold of 0.95 will result in the loss of 3,355 loci, or 64% of loci. Substantial data loss, but for most purposes, this level of filtering of poorly called loci is likely to be satisfactory. The results of the filtering are shown as a before-after plot.
 
 ### Filtering Individuals on Call Rate
 
@@ -1661,23 +1736,23 @@ gl.report.callrate(gl, method='ind')
 
 The output includes a list of populations and the Call Rate averaged across individuals, and a list of the top worst individuals in terms of their call rate. This will allow you to make a reasoned judgement on the impact of filtering out individuals.
 
-It appears there are a number of individuals with poor call rates. This could arise because of poor sample quality or because of particular attributes of the genomes of those individuals (true null alleles). The judgement needed here is to determine how valuable these individuals are to the analyses to follow, and to decide a threshold that does not eliminate key individuals or populations. A threshold of 0.7 would be indicated here.
+It appears there are a number of individuals with poor call rates. This could arise because of poor sample quality or because of particular attributes of the genomes of those individuals (true null alleles). The judgement needed here is to determine how valuable these individuals are to the analyses to follow, and to decide a threshold that does not eliminate key individuals or populations. 
 
-The graph tells the story. In the absence of information to the contrary, a threshold of 70% (0.70) would seem appropriate for filtering individuals on Call Rate.
+The graph tells the story. In the absence of information to the contrary, a threshold of 95% (0.95) would seem appropriate for filtering individuals on Call Rate.
 
-We execute the filter with a threshold of 0.70.
+We execute the filter with a threshold of 0.95.
 
 ```{r}
-gl <- gl.filter.callrate(gl, threshold=0.7, method='ind')
+gl <- gl.filter.callrate(gl, threshold=0.95, method='ind')
 ```
 
-This statement filters out individuals with a Call Rate across loci of less than 70%. It conveniently lists the individuals that have been removed and the populations to which they belong so you can assess the impact of the filtering. 
+This statement filters out individuals with a Call Rate across loci of less than 95%. It conveniently lists the individuals that have been removed and the populations to which they belong so you can assess the impact of the filtering. 
 
-The number of individuals is reduced from 617 to 600. Note that, in removing individuals, it is very likely that the remaining individuals will have some loci that are monomorphic, those for which the polymorphisms were represented only in the discarded individuals. If monomophic loci are undesirable, they can be removed by adding `mono.rm=TRUE` to the `gl.filter.callrate()` parameters.
+The number of individuals is reduced from 617 to 597. Note that, in removing individuals, it is very likely that the remaining individuals will have some loci that are monomorphic, those for which the polymorphisms were represented only in the discarded individuals. If monomophic loci are undesirable, they can be removed by adding `mono.rm=TRUE` to the `gl.filter.callrate()` parameters.
 
 We will address the monomorphic loci later with the filter `gl.filter.monomorphs()`.
 
-#### Recalculating locus metadata after filtering
+### Recalculating locus metadata after filtering
 
 Remember, the locus metrics are no longer valid if individuals or populations are deleted from the dataset. For example, if you filter out a population for which the individuals have particularly bad call rates, then the call rate parameter held in the locus metrics will no longer be accurate. It will need to be recalculated. This is true of many of the locus metrics.
 
@@ -1693,7 +1768,7 @@ Similarly, when filtering has resulted in removal of some individuals or populat
 gl <- gl.filter.monomorphs(gl)
 ```
 
-Note that many functions have a mono.rm and recalc parameters that allow you to remove monomorphic loci or recalculate metrics on the fly.
+Note that many functions have a `mono.rm` and recalc parameters that allow you to remove monomorphic loci or recalculate metrics on the fly.
 
 It is not a fatal error to forget to recalculate the locus metrics because dartR scripts will detect if they have not been recalculated and rectify this before they a particular locus metric is needed. 
 
@@ -1736,7 +1811,7 @@ gl <- gl.filter.reproducibility(gl, threshold=0.995)
 ```
 
 
-We lost 813 loci, down from 2,005 to 1,192.
+We lost 733 loci, down from 1660 to 927.
 
 
 ### Filtering Sex-linked Loci
@@ -1747,9 +1822,12 @@ Species with sex chromosomes typically have these organised into a non-recombini
 
 The sex linkage report function identifies putative sex-linked SNP loci. Matched with `gl.filter.sexlinked()` (refer Chapter 5). For further help, type `?gl.report.sexlinked`
 
-```{r}
+```{r, message=TRUE, warning=TRUE}
 gl.report.sexlinked(gl, system = 'xy')
 ```
+
+
+As you can see we do not have many sex-linked loci, however usually testing for sex-linked markers should come first, as other filters can filter them out.
 
 [text to come (Arthur)]{style="color:red;"}
 
@@ -1765,7 +1843,9 @@ gl <- gl.drop.sexlinked(gl, system = 'xy')
 Average read depth is a critical consideration when working with DArTseq SNP genotypes because DArT’s SNP-calling pipeline is fundamentally read-count driven, and read depth directly determines the confidence, accuracy and reproducibility of each SNP call. The reliability of a SNP call is particularly important in analyses that require correct assignment of heterozygous states.
 
 Low read depth can inflate sampling error in allele frequency estimates, heterozygosity estimates, inbreeding coefficients and FST estimates.
+
 Low read depth can be especially problematic in DArT’s SilicoDArT loci where read depth can influence the probability of detecting locus' presence vs absence.
+
 So it requires some attention.
 
 ```{r}
@@ -1781,7 +1861,7 @@ gl <- gl.filter.rdepth(gl, lower =6)
 ```
 
 
-That removes another 5 loci. Note that we did not filter using an upper limit (default=1000). One might be tempted because exceptionally high read depths are an indication of stacking of orthologous sequence. However, DArT recommend against this as the data has already been through their pipelines to eliminate loci influenced by the presence of orthologues.
+That removes another 3 loci. Note that we did not filter using an upper limit (default=1000). One might be tempted because exceptionally high read depths are an indication of stacking of orthologous sequence. However, DArT recommend against this as the data has already been through their pipelines to eliminate loci influenced by the presence of orthologues.
 
 ### Filtering Loci on Overshoot
 
@@ -1809,6 +1889,7 @@ gl.report.taglength(gl)
 
 
 Quite a spread of tag lengths, which is to be expected.
+
 Let us filter out all but those sequence tags and their associated SNPs where the sequence tag length is less than the maximum of 69.
 
 ```{r}
@@ -1817,16 +1898,16 @@ gl <- gl.filter.taglength(gl, lower=69)
 
 
 
-Of the 934 loci we started with, we lose 644 bringing us down to 290 loci.
+Of the 928 loci we started with, we lose 639 bringing us down to 289 loci.
 
 
-###Filtering Loci on Hamming Distance
+### Filtering Loci on Hamming Distance
 
 Hamming distance is a measure of sequence similarity between sequence tags. If two sequence tags (69 bp) differ by only a couple of base pairs then suspicion is aroused as to whether they have arisen by sequencing error. Diversity Arrays Technology have probably already filtered on a Hamming distance of 3 bp. Rarely you might want to go further, and the gl.filter.hamming function gives you this option. This function may be useful if you have generated your SNP data outside the DArT environment where no pre-filtering on sequence similarity has been undertaken.
 
 Run a report first to inform the choice of threshold. Note that this is computationally intensive. Maybe time for a coffee.
 
-```{r eval = FALSE, cache = FALSE}
+```{r eval = TRUE}
 gl.report.hamming(gl)
 ```
 
@@ -1841,7 +1922,7 @@ We lose another 2 loci.
 
 ### Crafting a Filtering Strategy
 
-We have now gone through the operations of each of the filtering functions available in dartR. Which ones you use, depends upon the question at hand and the analyses you propose. Seldom would one apply all of these filters.
+We have now gone through the operations of some of the filtering functions available in dartR (not covered yet are `gl.filter.maf()`, `gl.filter.hwe()`, and `gl.filter.ld()`, to name a few). Which ones you use, depends upon the question at hand and the analyses you propose. Seldom would one apply all of these filters.
 
 Order matters. It would have occurred to you that it would matter which order you filtered call rate, on locus first then individual second. This depends upon which you regard as more valuable to subsequent analyses, loci or individuals. Do you filter on secondaries early or late? What about sex linked markers.
 
@@ -1864,27 +1945,37 @@ Have a look at the quality of the raw data using a smearplot – loci across the
 gl.smearplot(gl)
 ```
 
+###
+
+
 Not particularly high quality, as you would expect of the raw data. Lots of missing values there (grey) and a couple of standout individuals (horizontal streaks).
 
-Let us apply a filtering regime.
+Let us apply a filtering regime. I have set verbosity to zero to limit the output
 
 ```{r echo = FALSE, results='hide'}
 # gl <- gl.filter.sexlinked(gl,"xy") # Loss of 48 loci
-gl <- gl.drop.sexlinked(gl, 'xy')
-gl <- gl.filter.callrate(gl, threshold=0.95) # Loss of 3522 loci
-gl <- gl.filter.callrate(gl, threshold=0.7, method='ind', mono.rm=TRUE) # Loss of 1 individual, 84 loci
-gl <- gl.filter.reproducibility(gl, threshold=0.995) # Loss of 802 loci
-gl <- gl.filter.rdepth(gl,lower=8) # Loss of 24 loci
+gl <- gl.drop.sexlinked(gl, 'xy', verbose = 0)
+gl <- gl.filter.callrate(gl, threshold=0.95,verbose = 0) # Loss of 3522 loci
+gl <- gl.filter.callrate(gl, threshold=0.95, method='ind', mono.rm=TRUE, verbose = 0) # Loss of 1 individual, 84 loci
+gl <- gl.filter.reproducibility(gl, threshold=0.995, plot.display = F) # Loss of 802 loci
+gl <- gl.filter.rdepth(gl,lower=8, plot.display = F) # Loss of 24 loci
 ```
 
-```{r 51b, exercise = TRUE, exercise.setup = "datagl"}
-# gl <- gl.filter.sexlinked(gl,"xy") # Loss of 48 loci
+
+```{r eval = FALSE}
+
 gl <- gl.drop.sexlinked(gl, 'xy')
-gl <- gl.filter.callrate(gl, threshold=0.95) # Loss of 3522 loci
-gl <- gl.filter.callrate(gl, threshold=0.7, method='ind', mono.rm=TRUE) # Loss of 1 individual, 84 loci
-gl <- gl.filter.reproducibility(gl, threshold=0.995) # Loss of 802 loci
-gl <- gl.filter.rdepth(gl,lower=8) # Loss of 24 loci
+# Loss of 53 loci
+gl <- gl.filter.callrate(gl, threshold=0.95) 
+# Loss of 3322 loci
+gl <- gl.filter.callrate(gl, threshold=0.95, method='ind', mono.rm=TRUE) 
+# Loss of 20 individual, 3 loci
+gl <- gl.filter.reproducibility(gl, threshold=0.995) 
+# Loss of 801 loci
+gl <- gl.filter.rdepth(gl,lower=8) 
+# Loss of 24 loci
 ```
+
 
 ```{r glfiltpca}
 gl <- tympo.gl.filtered
@@ -1898,6 +1989,8 @@ Quick check of the outcome.
 gl.smearplot(gl)
 ```
 
+###
+
 The smear plot is much better. The number of missing values do not dominate the visual, and no individuals stand out as outliers in pattern. our filtering has worked.
 
 ```{r 51d, exercise = TRUE, exercise.setup = "glfiltpca"}
@@ -1906,8 +1999,9 @@ nInd(gl)
 table(pop(gl))
 ```
 
+###
 
-After filtering, we have 1077 loci remaining.
+After filtering, we have 1073 loci remaining.
 Now save the filtered data in binary form for use in Chapter 6.
 
 ```{r eval = FALSE}
@@ -1923,7 +2017,8 @@ gl.save(gl,"./www/Tympo_SNP_filtered.RData")
 
 
 This can be loaded later using `gl.load()`.
-We are done with the worked example in Chapter 5.
+
+We are done with the worked example in Chapter 5. Try the [Exercises](#custom2) for Chapter 5 and then head back to the ebook for Chapter 6 - visualisation. 
 
 
 [Back to Menu](#custom){.menuButton}
@@ -1967,15 +2062,19 @@ Assuming you have filtered the data appropriately, there should not be a dominan
 gl
 ```
 
-Only 1.2% of the 1077 SNP scores are missing (NA). That is well within the tolerances of PCA.
+###
+
+Only 0.99% of the 1073 SNP scores are missing (NA). That is well within the tolerances of PCA.
 To run the PCA, use
 
 ```{r 61c, exercise = TRUE, exercise.setup = "glfiltpca"}
-pca <- gl.pcoa(gl)
+# this will take a while ~ 30 seconds 
+pca <- gl.pcoa(gl) 
 ```
 
+###
 
-The results of the PCA show that of the ordered PCA axes, PCA1 explains 9.1% of the total variation in the dataset, PCA2 explains a further 7.8% and PCA3 explains a further 2.5% of total variation. Looking at the scree plot, 61 axes are regarded as informative (explaining more than the 615 original variables on average), but all but the first threepcoa add only marginal additional explanatory value.
+The results of the PCA show that of the ordered PCA axes, PCA1 explains 9.3% of the total variation in the dataset, PCA2 explains a further 7.7% and PCA3 explains a further 2.4% of total variation. Looking at the scree plot, 59 axes are regarded as informative (explaining more than the 596 original variables on average), but all but the first threepcoa add only marginal additional explanatory value.
 
 Now for the visualization.
 
@@ -1984,19 +2083,22 @@ Now for the visualization.
 pc.plot <- gl.pcoa.plot(pca, gl)
 ```
 
+###
 
-The plot shows nice separation of the geographic locations, which indicates that the individuals from each physical location have distinct allelic frequency profiles. Tuggeranong stands out as distinctive, to the point that if you had an unknown individual from that locality, it could be assigned to Tuggeranong by its allelic profile across the 1077 loci.
+The plot shows nice separation of the geographic locations, which indicates that the individuals from each physical location have distinct allelic frequency profiles. Tuggeranong stands out as distinctive, to the point that if you had an unknown individual from that locality, it could be assigned to Tuggeranong by its allelic profile across the 1073 loci.
 
 Kowen is also quite distinct, but the allelic profiles individuals from the other two localities abut. There appears to be evidence of some migration between Googong and Royalla as indicated by individuals in each with allelic profiles characteristic of the other. Similarly, some Royalla individuals appear to have migrated to Kowen and one in the other direction. The unknown (purple) individuals are best assigned to Royalla.
 
 We hope that you can see the power of this exploratory visual technique.
-If you want to identify the migrants, you can use the parameter interactive=TRUE and mouse-over the points to obtain their identities.
+If you want to identify the migrants, you can use the parameter `interactive=TRUE` and mouse-over the points to obtain their identities.
 
 ```{r 61e, exercise = TRUE, exercise.setup = "glfiltpca"}
 gl.pcoa.plot(pca, gl, interactive=TRUE)
 ```
 
-We cannot show this here, but when you run this command from the RStudio Editor you will see how the mouse-over works.
+When you run this command you will see how the mouse-over works.
+
+###
 
 One final point relates to visualization in only two dimensions. The first two PCA axes explain the bulk of the structural signal in the data, but the third dimension may also be informative. This means that proximity as seen in the first two dimensions may prove to be an illusion when the third dimension is considered.
 
@@ -2004,6 +2106,7 @@ One final point relates to visualization in only two dimensions. The first two P
 gl.pcoa.plot(pca,gl,xaxis=1,yaxis=3)
 ```
 
+###
 
 In this case, there is no additional structure revealed by examining the third PCA over and above what was evident in the plot of PCA1 and PCA2.
 That is PCA in a nutshell. There is much more to it, and this will be covered in the next eBook on Advanced Topics in dartR.
@@ -2016,7 +2119,7 @@ We finish with showing how to produce a geographic plot for studies where geogra
 gl.map.interactive(gl)
 ```
 
-
+###
 
 A nice plot to give the study a geographic context. Note that the Canberra grassland earless dragon is critically endangered, so the locations have been heavily modified for the sake of this worked example.
 
@@ -2024,7 +2127,7 @@ And that brings us to the end of the Worked Examples for this eBook on Getting S
 
 [Back to Menu](#custom){.menuButton}
 
-## Worked Example Exercises
+## Worked Example Exercises {#custom2}
 
 ### EXERCISES (click to expand)
 ##### Chapter 3 Exercises
@@ -2221,29 +2324,224 @@ gl.smearplot(gs)
 <br>
 
 ## Exercise 7-1: Camaroon Macrobrachium 
+###
 
-Macrobrachium is a large and cosmopolitan crustacean genus of high economic importance worldwide. The authors of this study investigated the morphological and molecular identification of freshwater prawns of the genus Macrobrachium in South, Southwest and Littoral regions of Cameroon in Africa. Seven species occur in the area:  M. vollenhovenii, M. macrobrachion, M. sollaudii, M. dux, M. chevalieri, M. felicinum and an undescribed Macrobrachium species. The objective of the study was to validate (or invalidate) the identified species based on their genetic profiles. A total of 93 individuals representing these species were subjected to genetic characterization using 1,814 DArT markers. This study is considered valuable for informing breeding design and genetic resource conservation programs for Macrobrachium in Africa.
+Macrobrachium is a large and cosmopolitan crustacean genus of high economic importance worldwide. The authors of [this study](http://georges.biomatix.org/storage/app/media/eBook Introduction to dartR/2019_Makombu_Ecology_Evolution_Macrobrachium.pdf) investigated the morphological and molecular identification of freshwater prawns of the genus Macrobrachium in South, Southwest and Littoral regions of Cameroon in Africa. Seven species occur in the area:  *M. vollenhovenii, M. macrobrachion, M. sollaudii, M. dux, M. chevalieri, M. felicinum* and an undescribed *Macrobrachium* species. The objective of the study was to validate (or invalidate) the identified species based on their genetic profiles. A total of 93 individuals representing these species were subjected to genetic characterization using 1,814 DArT markers. This study is considered valuable for informing breeding design and genetic resource conservation programs for Macrobrachium in Africa.
 
-Refer to the original paper by Judith Makombu and her team for further detail on the study. 
+![](images/ex7-1.jpg)
+
+Refer to the [original paper](http://georges.biomatix.org/storage/app/media/eBook Introduction to dartR/2019_Makombu_Ecology_Evolution_Macrobrachium.pdf) by Judith Makombu and her team for further detail on the study. 
 
 You are asked to use this dataset to apply what you have learned from this introductory eBook, drawing from across all Chapters of this eBook. Note that the data may have been modified for educational purposes and that you should refer to the original paper and its supplementary files for the definitive data, or contact the authors directly, if you wish to draw upon these data for research purposes.
 
-### Set up a new project and associated directory
 
-Set up a new project and directory to house the files generated in this analysis. Set global verbosity to 3.
+### Begin by reading the SNP data into dartR 
 
+-	First, examine the contents of the metadata file, [Macrobrachium_ind_metadata.csv](http://georges.biomatix.org/storage/app/media/eBook Introduction to dartR/Macrobrachium_ind_metadata.csv). This file has the individual metadata associated with each individual, including such attributes as sex, latitude, longitude, river etc. Recall that these individual metadata are assigned to each individual as the data are read in.
 
+-	Read the data into dartR from [Report-DShr16-2215_2Row_SNP.csv]{style="color: blue;"}. Be sure to associate the individual metadata.
 
-*more to come...*
+-	Save the raw dataset in binary form using a sensible name (e.g. [Macrobrachium_Cameroon_raw_SNP.RData]{style="color: blue;"}).
 
+-	Interrogate the data. How many individuals are there? What names have been assigned to the individuals? How many populations have been defined? What are the population names? How many loci are there in the raw dataset? Examine the genotypes for the first 7 individuals for the first 5 loci.
+
+### Undertake some quality control (QC) examinations.
+
+-	Are there any monomorphic loci in the dataset provided by Diversity Arrays Technology? If not, why not? And what analyses might be affected by this?
+
+-	What about CallRate. The CallRate is particularly poor, with most of the loci called less than 40% of individuals. This is a multispecies study. Why do you think the CallRate would be so low overall.
+
+-	Now examine secondaries. How many sequence tags contain more than one SNP? How many loci would be removed if you filtered for secondaries? Why are secondaries a problem, if in fact they are?
+
+-	Now examine read depth. If you set a read depth threshold in filtering of 10%, now many loci would you lose? Why might you do this?
+
+-	Now examine reproducibility. These reproducibility estimates look excellent. DArT advise against over-filtering on reproducibility. Why would they advise this?
+
+-	Now examine if any SNPs have been removed when trimming sequence tags of adapters. You should find that only three loci are identified. When might this be a problem in analysis?
+
+-	The authors of this work were concerned about loci with Minor Allele Frequencies. Examine the distribution of Minor Allele Frequencies estimated globally. How many loci would you lose if you set a threshold of 5% for Minor Allele Frequency? What about 10%?
+
+### Filtering
+
+Having examined the dataset and undertaken some QC examinations, the time has come for some filtering. As we have emphasized, there is no one formula for filtering either in terms of the order of applying particular filters, and in the thresholds selected for filtering. 
+
+-	The authors of this work filtered on a CallRate threshold of 80% and on MAF threshold of 5%. They retained only 1,814 SNP loci. Repeat their filtering regime with dartR. Do you obtain the same result?
+
+-	Devise and apply a considered filtering strategy to yield a set of reliable SNP markers. Be sure to use a CallRate threshold of 80% as did the authors. Why? How many SNP loci are retained after your filtering strategy is applied? Might you have been too stringent?
+
+### Exploratory visualization
+-	Undertake a PCA analysis on your filtered data. How many informative axes are there under the broken-stick criterion? How many explain more than 10% of variation? How much variation is accommodated by the first two PCA axes? Would you be comfortable with restricting attention to the first two axes?
+
+-	 Plot PC2 against PC1. How does your plot compare to the one presented by the authors? Did your filtering regime have a substantial impact on the outcome?
+
+-	Given that the scree plot suggested that more than two PCA axes are informative, plot PC3 against PC1. Does this provide any further resolution on the relative proximities of the populations? What about Macrobrachium felicinum and Macrobrachium sp.? If you restricted attention to the plot of PC2 against PC1, what might you have concluded? Would this conclusion change on examination of the plot of PC3 and PC1.
+
+-	In the plot of PC2 against PC1, you might have noticed a ring-in in the Macrobrachium chevalieri grouping. Use the `interactive=TRUE` option in `gl.pcoa.plot()` to replot the PCA and allow mouse-over to identify individual points. Which individual appears to have been mis-assigned? What population is it assigned to in the original dataset?
+
+-	Reassign the individual to its correct population (chevalieri).
+
+-	Plot the individuals on a geographic map for context.
+
+### SilicoDArT Analysis
+
+You should now repeat the above SNP analyses for the accompanying SilicoDArT dataset [Report-DShr16-2215_SilicoDArT.csv]{style="color:blue;"}. Be sure to associate the individual metadata on reading in the data.
+
+-	Be sure to save the filtered SilicoDArT dataset in binary form using a sensible name (e.g. [Macrobrachium_Cameroon_study_SilicoDArT_raw.RData]{style="color:blue;"}).
+
+-	Do the results of the SilicoDArT analysis correspond broadly to that of the SNP analysis?
+
+### Winding up
+
+-	Save the filtered SNP dataset in binary form using a sensible name (e.g. [Macrobrachium_Cameroon_study_SNP_filtered.RData]{style="color:blue;"}).
+
+-	Save the filtered SilicoDArT dataset in binary form using a sensible name (e.g. [Macrobrachium_Cameroon_study_SilicoDArT_filtered.RData]{style="color:blue;"}).
 
 ## Exercise 7-2: Western Sawshell Turtle
+###
 
-*coming soon...*
+The Western Sawshell Turtle *Myuchelys bellii* is an endangered species of freshwater turtle that resides in upstream regions of the Murray-Darling River drainage basin (MDB) in Australia. It is currently restricted to the upland regions of the Namoi, Gwydir and Border Rivers subdrainages of the MDB. Populations are through to have declined through a combination of river regulation, impoundment, and reduced flow connectivity, predation of eggs by foxes and pigs, and degradation of riparian vegetation and instream habitat. Populations are thought to be fragmented which makes the species particularly vulnerable to future rapid changes in climate, habitat and disease outbreak.
+
+![](images/ex7-2.jpg)
+
+The objective of this study, as yet unpublished, is to examine genetic structure across the range of the species with a view to informing options for its conservation management.
+
+You are asked to use this dataset to apply what you have learned from this introductory eBook, drawing from across all Chapters of this eBook. Note that the data may have been modified for educational purposes and should not be used for research purposes.
+
+
+### Begin by reading the SNP data into dartR 
+
+-	First, examine the contents of the metadata file, [Myuchelys_bellii_ind_metadata.csv]{style="color:blue;"}. This file has the individual metadata associated with each individual, including such attributes as sex, species, latitude, longitude, etc. Note that the service included multiple species, not just our focal species *Myuchelys bellii*.
+
+-	Read the data into dartR from [Report_DFwt25-10896_SNP_2Row.csv]{style="color:blue;"}. Be sure to associate the individual metadata.
+
+-	Briefly interrogate the data. How many individuals are there? How many populations? What are the population names? How many SNP loci?
+
+-	Generate a smearplot for the data prior to any manipulations. What do you conclude in terms of patterns of missing data (white)?
+
+-	Remove all individuals that are not *Myuchelys bellii*. There are many ways to do this (e.g. recode tables), but try using the `as.pop` feature of the gl.keep.pop() function. You may need to look at the names of the individual metrics (`names(gl@other$ind.metrics)`) to determine which variable is a useful substitute for the population names.
+
+-	Confirm that only individuals from the species *Myuchelys bellii* remain in the dataset.
+
+-	Now remove individuals for which there are no locality data (for which `lat=NA`). Again, use the `as.pop` parameter this time in `gl.drop.pop()`. Check afterwards that they all have lat-lon data.
+
+-	Filter for monomorphic loci because deleting populations or individuals may generate many monomorphic loci, and we want a clean start (as if only Myuchelys bellii was in the DArT service). How many monomorphic loci were generated by the removal of individuals from the dataset?
+
+-	Generate a smearplot again now that you have removed all but individuals from the focal species and filtered for monomorphic loci (including all NA loci). What improvement do you notice in terms of patterns of missing data (white)? Are there still some issues?
+
+-	Interrogate the data again. How many individuals are there? What names have been assigned to the individuals? How many populations have been defined? What are the population names? How many loci are there in the raw dataset? Examine the genotypes for the first 7 individuals for the first 5 loci.
+
+-	Save the raw dataset in binary form using a sensible name (e.g. [Myuchelys_bellii_raw_SNP.RData]{style="color:blue;"}).
+
+### Undertake some quality control (QC) examinations.
+
+-	Start with CallRate. The CallRate distribution is pretty good, but there are some loci for which the CallRate is particularly poor. Some filtering will be required later.
+
+-	Now examine secondaries. How many sequence tags contain more than one SNP? How many loci would be removed if you filtered for secondaries? By far most sequence tags have only one SNP, but there are some with multiple SNPs (secondaries). Remind yourself why secondaries are a problem, if in fact they are?
+
+-	Now examine read depth. If you set a read depth threshold in filtering of 5x, now many loci would you lose? What about 8x? Remind yourself why might you do this?
+
+-	Now examine reproducibility. Do you think filtering on reproducibility is warranted? Remember, DArT advise against over-filtering on reproducibility (setting the threshold at 1). 
+-	Now examine if any SNPs have been removed when trimming sequence tags of adapters. Likely to be a problem?
+
+-	Examine the distribution of Minor Allele Frequencies estimated globally. How many loci would you lose if you set a threshold of 5% for Minor Allele Frequency?
+
+### Filtering
+
+Having examined the dataset and undertaken some QC examinations, the time has come for some filtering. As we have emphasised, there is no one formula for filtering either in terms of the order of applying particular filters, and in the thresholds selected for filtering. 
+
+-	Devise and apply a considered filtering strategy to yield a set of reliable SNP markers. How many SNP loci are retained after your filtering strategy is applied? Might you have been too stringent?
+
+-	Generate a third smearplot for the data after filtering. What do you conclude in terms of patterns of missing data (white). Ready to go?
+
+### Exploratory visualization
+
+-	Undertake a PCA analysis on your filtered data. How many informative axes are there under the broken-stick criterion? How many explain more than 10% of variation? How much variation is accommodated by the first two PCA axes? Would you be comfortable with restricting attention to the first two axes?
+
+-	 Plot PC2 against PC1. This is pretty messy, especially because of the staggering of labels which draws them away from their associated points. Try running the plot script using the `as.pop` parameter set to `"drainage"`.
+
+-	What do you conclude about the potential for genetically distinct management units across the range of the species? How would you consider managing the genetic diversity of the species?
+
+-	Plot the individuals on a geographic map for context. Try zooming out to better examine the locality data.
+
+### SilicoDArT Analysis
+
+You should now repeat the above SNP analyses for the accompanying SilicoDArT dataset [Report_DFwt25-10896_SilicoDArT.csv]{style="color:blue;"}. Be sure to associate the individual metadata on reading in the data.
+
+-	Restrict your attention again to *Myuchelys bellii*.
+
+-	Be sure to save the filtered SilicoDArT dataset in binary form using a sensible name (e.g. [Myuchelys_bellii_SilicoDArT_raw.RData]{style="color:blue;"}).
+
+-	Do the results of the SilicoDArT analysis correspond broadly to that of the SNP analysis?
+
+### Winding up
+
+-	Save the filtered SNP dataset in binary form using a sensible name (e.g. [Myuchelys_bellii_SNP_filtered.RData]{style="color:blue;"}).
+
+-	Save the filtered SilicoDArT dataset in binary form using a sensible name (e.g. [Myuchelys_bellii_SilicoDArT_filtered.RData]{style="color:blue;"}).
+
+-	Save your project and exit.
+
 
 
 ## Exercise 7-3: Northern Quoll
+###
 
-*coming soon...*
+Landscape-scale conservation needs to consider metapopulation dynamics declines of species facing multiple threats to their survival are to be abated or reversed. This study uses SNPs in support of decision-making in the context of metapopulations of the northern quoll *Dasyurus hallucatus* in the Pilbara of Western Australia. The landscape is subject to multiple uses and is a hotspot for biodiversity and mining. One objective of this study was to examine genetic structure across the range of the species with a view to informing options for its conservation management.
+
+![](images/ex7-3.jpg)
+
+This work has been published in [Conservation Biology](http://georges.biomatix.org/storage/app/media/eBook Introduction to dartR/2023_Shaw_Quolls_Conservation_Biology.pdf). You are encouraged to read this paper to gain a greater appreciation of the context of the analysis.
+You are asked to use this dataset to apply what you have learned from this introductory eBook, drawing from across all Chapters of this eBook. Note that the data may have been modified for educational purposes and should not be used for research purposes.
+
+### Begin by reading the SNP data into dartR 
+
+-	First, examine the contents of the metadata file, [Dasyurus_hallucatus_ind.metadata.csv](http://georges.biomatix.org/storage/app/media/eBook Introduction to dartR/Dasyurus_hallucatus_ind.metadata.csv). This file has the metadata associated with each individual, including such attributes as sex, species, latitude, longitude, etc. 
+
+-	We have already read the data into dartR from [Report_DDasy19-4717_1Row.csv]{style="color:blue;"} and saved it as [Dasyurus_SNP_raw.RData]{style="color:blue;"}. Load this binary datafile [Dasyurus_SNP_raw.RData]{style="color:blue;"} into dartR.
+
+-	Briefly interrogate the data. How many individuals are there? How many populations? What are the population names? How many SNP loci? What are the variables in the associated metadata? Examine the genotypes for the first 7 individuals for the first 5 loci.
+
+-	Generate a smearplot for the data prior to any manipulations. What do you conclude in terms of patterns of missing data (white)?
+
+### Undertake some quality control (QC) examinations.
+
+-	Start with CallRate. The CallRate distribution is pretty broad, with some loci having a CallRate as low as 20%. We can expect some substantial losses of loci under standard filtering regimes later. 
+
+-	Consider Call Rate by individual. Are all individuals scored well across loci, or are there some individuals that would best be discarded. What might be a good cut-off for filtering out individuals with poor Call Rates.
+
+-	Now examine secondaries. How many sequence tags contain more than one SNP? How many loci would be removed if you filtered for secondaries? Remind yourself why secondaries are a problem, if in fact they are?
+
+-	Now examine read depth. If you set a read depth threshold in filtering of 5x, now many loci would you lose? What about 8x? Remind yourself why might you do this?
+
+-	Now examine reproducibility. Do you think filtering on reproducibility is warranted? Remember, DArT advise against over-filtering on reproducibility (i.e. setting the threshold at 1). 
+
+-	Now examine if any SNPs will be removed when trimming sequence tags of adapters. Likely to be a problem?
+
+-	Examine the distribution of Minor Allele Frequencies estimated globally. How many loci would you lose if you set a threshold of 5% for Minor Allele Frequency?
+
+### Filtering
+
+Having examined the dataset and undertaken some QC examinations, the time has come for some filtering. As we have emphasised, there is no one formula for filtering either in terms of the order of applying particular filters, and in the thresholds selected for filtering. 
+
+-	Devise and apply a considered filtering strategy to yield a set of reliable SNP markers. How many SNP loci are retained after your filtering strategy is applied? Might you have been too stringent?
+
+-	Generate a third smearplot for the data after filtering. What do you conclude in terms of patterns of missing data (white). Is it beautiful? Ready to go?
+
+### Exploratory visualization
+
+-	Undertake a PCA analysis on your filtered data. How many informative axes are there under the broken-stick criterion? How many explain more than 10% of variation? How much variation is accommodated by the first two PCA axes? Would you be comfortable with restricting attention to the first two axes?
+
+-	 Plot PC2 against PC1. This is pretty messy, especially because of the staggering of labels which draws them away from their associated points. Try running the plot script using the `as.pop` parameter set to `IBRA_SubRegion`.
+
+-	The variation represented by PC1 is largely to do with the divergence of Dolphin Island from the rest of the individuals. To examine structure deeper in the PCA dimensions, you can plot PC3 against PC2. Try also the alternative of removing the Dolphin Island individuals (`gl.drop.pop()` using the `as.pop` parameter) then re-running the PCA. Which of these approaches best reproduces the results presented in the paper?
+
+-	Plot the individuals on a geographic map for context. Try zooming out to better examine the locality data.
+
+### Winding up
+
+-	Save the filtered SNP dataset in binary form using a sensible name (e.g. [Dasyurus_SNP_filtered.RData]{style="color:blue;"}).
+
+-	Save your project and exit.
+
 
 
