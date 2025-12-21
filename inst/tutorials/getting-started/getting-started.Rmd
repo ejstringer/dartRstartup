@@ -220,7 +220,7 @@ mat <- matrix(NA, nrow = 3, ncol = 4)
 ```
 
 
-```{r}
+```{r eval = FALSE}
 # Create a vector
 width <- c(10.4,5.6,3.1,6.4,21.7)
 # Access a single element
@@ -241,6 +241,8 @@ width[c(1,length(width))]
 # Access elements greater than 6 
 width[width > 6]
 
+# Create a vector
+names <- c("Alice", "Bob", "Carol", "Dave")
 # Access elements equal to specific values 
 names[names == "Alice"] 
 
@@ -254,9 +256,17 @@ width[]
 
 ```
 
+```{r ex21qqx,  exercise = TRUE, exercise.setup = "data2"}
+names <- c("Alice", "Bob", "Carol", "Dave")
+names[]
+
+```
+
 ###
 
 You should by now have the gist. A vector is a data structure that holds an ordered set of numbers, each of which can be addressed by its position in the ordered set, or by applying some logical condition, using square brackets.
+
+###
 
 #### Vector arithmetic
 
@@ -267,7 +277,9 @@ width <- width + 10
 width
 ```
 
-will add 10 to each value of the vector. Similar actions occur with the other arithmetic operators. The functions `log()`, `exp()`, `sin()`, `cos()`, `tan()`, `sqrt()`, and so on, all have their usual meaning, and when applied to a vector, are applied to each value of the vector.
+###
+
+This will add 10 to each value of the vector. Similar actions occur with the other arithmetic operators. The functions `log()`, `exp()`, `sin()`, `cos()`, `tan()`, `sqrt()`, and so on, all have their usual meaning, and when applied to a vector, are applied to each value of the vector.
 
 It is possible to include two vectors in calculations, in which case their values will be included in the equation as matched pairs. For example, if we have two vectors with the same number of values, length and width, then the assignment
 
@@ -277,10 +289,14 @@ area <- length*width
 area
 ```
 
-will yield a new vector with the values calculated by multiplying the first value of length with the first value of width, the second value of length with the second value of width, and so on. Calculations involving missing values NA will yield missing values.
+###
+
+This will yield a new vector with the values calculated by multiplying the first value of length with the first value of width, the second value of length with the second value of width, and so on. Calculations involving missing values NA will yield missing values.
 
 The standard arithmetic operators apply, and include and include the usual addition (`+`), subtraction (`-`), division (`/`), multiplication (`*`) and exponentiation (`^`). 
 Working with vectors of differing sizes is difficult, and we probably should not go there.
+
+###
 
 #### Missing Values in Vectors
 
@@ -303,6 +319,8 @@ is.na(vec)
 vec2 <- vec[!is.na(vec)]
 vec2
 ```
+
+###
 
 #### Useful Vector Functions
 
@@ -337,6 +355,7 @@ length(numbers) # e.g.
 # copy and paste from above, one at a time or all at once.
 ```
 
+###
 
 For a more detailed account of working with vectors in R, refer to the [AI summary on vectors](http://georges.biomatix.org/storage/app/media/eBook Introduction to dartR/AI_Guide_to_R_Vectors.htm).
 
@@ -349,6 +368,7 @@ sexcode <- c("F", "F", "M", "J", "F", "M", "J", "J", "F")
 sexcode
 ```
 
+###
 
 Converting this to a factor causes the values, in alphabetical order, to be assigned numbers, and those numbers to be assigned labels. 
 
@@ -357,12 +377,15 @@ sexcode <- factor(sexcode)
 sexcode
 ```
 
+###
 
 A subtle difference to be sure. The numbers are hidden behind the scenes, and re-caste with their character values by R when they are printed out. That they are stored as numbers is evident when we print the object sexcode out without reference to its class.
 
 ```{r ex21cc,  exercise = TRUE, exercise.setup = "data2"}
 unclass(factor(sexcode))
 ```
+
+###
 
 The subtle difference between a character vector and a factor will become evident in analyses that involve discrete factors.
 To convert a character factor to a character vector, use
@@ -372,12 +395,16 @@ sexcode <- as.character(sexcode)
 sexcode
 ```
 
+###
+
 To convert a numeric factor to a numeric vector, use
 
 ```{r ex21ee,  exercise = TRUE, exercise.setup = "data2"}
 width <- as.numeric(as.character(width))
 width
 ```
+
+###
 
 For a more detailed account of working with factors in R, refer to the [AI summary on factors](http://georges.biomatix.org/storage/app/media/eBook Introduction to dartR/AI_Guide_to_R_Factors.htm).
 
@@ -395,6 +422,8 @@ mat <- matrix(NA, nrow = 3, ncol = 4)
 mat
 ```
 
+###
+
 #### Adding row and column names to a matrix
 
 ```{r ex21gg,  exercise = TRUE, exercise.setup = "data2"}
@@ -406,6 +435,7 @@ mat
 
 ```
 
+###
 
 #### Accessing Matrix Elements
 
@@ -476,41 +506,57 @@ This statement assigns the data in the raw datafile [my_input.dat]{style = "colo
 
 To examine the contents of the dataframe to see if it has been input correctly, simply type the dataframe name.
 
-```{r}
+
+```{r datatab}
+df <- turtles.df
+```
+
+```{r ex21nn,  exercise = TRUE, exercise.setup = "datatab"}
 df
 ```
 
+###
 
 Note the missing value for sex of the juveniles. Character variables are read in as factors, not as character vectors. In this case, the variable sex will be read in as a factor with the factor levels MALE and FEMALE.
 
+###
 
 #### Adding column names to a dataframe
 
 Sometimes data are held in a file without variable names. We can read these data in and give the variables names subsequently.
 
-```{r}
+```{r ex21oo,  exercise = TRUE, exercise.setup = "datatab"}
 names(df) <- c("identity","sex","len","hw","wt")
 df
 ```
 
+###
+
+```{r datatab2}
+df <- turtles.df
+names(df) <- c("identity","sex","len","hw","wt")
+
+```
 
 #### Accessing DataFrame elements
 
 DataFrame columns can be accessed as vectors using the `$` operator
 
 
-```{r}
+```{r ex21pp,  exercise = TRUE, exercise.setup = "datatab2"}
 df$sex
 ```
 
 and specific values in a column using
 
-```{r}
+```{r ex21qq,  exercise = TRUE, exercise.setup = "datatab2"}
 df$sex[7]
 ```
 
 
 The object `df$sex` is a vector, and all the usual operators for vectors apply. 
+
+###
 
 #### Initializing a DataFrame
 
@@ -524,13 +570,16 @@ df
 ```
 
 
+###
 
 #### Adding Rows and Columns to a Dataframe
 
 The simplest way to add a new variable (=column) to an existing dataframe is to use assignment.
 
 ```{r}
+df <- data.frame(matrix(NA, nrow = 10, ncol = 4))
 df$newvar <- 1:10
+df
 ```
 
 The length of the vector needs to be the same as the number of rows in the dataframe.
@@ -569,21 +618,41 @@ exp_results
 
 ```
 
-#### Accessing List Elements
-List elements can be accessed with a double square bracket. For example, to pull down the genotypes into a vector, use
 
-```{r}
-vec <- exp_results$genotypes
-vec
+```{r datalist, echo = FALSE}
+sample_size <- 50
+# Create a character vector
+genotype <- c("A/A", "A/B", "A/B", "B/B")
+# Create a numeric vector
+frequencies <- c(0.5, 0.2, 0.8, 0.1, 0.7)
+# Create a date scalar
+experiment_date <- as.Date("2024-03-15") 
+# Create a logical scalar value
+significance <- TRUE
+# Create a list
+exp_results <- list(n=sample_size, genotype=genotype, 
+                    frequencies=frequencies,
+                    date=experiment_date,
+                    sig=significance)
+exp_results
 ```
 
+###
+
+#### Accessing List Elements
+List elements can be accessed with a double square bracket. For example, to pull down the genotype into a vector, use
+
+```{r ex21ss,  exercise = TRUE, exercise.setup = "datalist"}
+vec <- exp_results$genotype
+vec
+```
 
 We will see later that lists are particularly valuable in passing multiple objects back from an R function.
 
 #### Initializing a list
 Sometimes you will need to initialize a list before populating it, such as in a for loop.
 
-```{r}
+```{r ex21tt,  exercise = TRUE, exercise.setup = "datalist"}
 sample_list <- list()
 class(sample_list)
 ```
@@ -592,12 +661,14 @@ class(sample_list)
 #### Adding new elements to a list
 You can add new elements to an existing list by assignment.
 
-```{r}
+```{r ex21uu,  exercise = TRUE, exercise.setup = "datalist"}
 # Add a new object called weights
 weights <- c(3.5, 5.2, 7.8, 4.1, 6.7)
 exp_results[["wt"]] <- weights
 exp_results
 ```
+
+###
 
 For a more detailed account of working with lists in R, refer to the [AI summary on lists](http://georges.biomatix.org/storage/app/media/eBook Introduction to dartR/AI_Guide_to_R_Lists.htm).
 
@@ -607,13 +678,14 @@ We have learned that the keyword NA is recognised by R as a missing value. Some 
 Do not use the string "NA" to represent missing data in your program statements. Use the keyword NA. So an appropriate assignment of the fourth value of the vector weight to missing is
 
 ```{r}
+weights <- c(3.5, 5.2, 7.8, 4.1, 6.7)
 weights[4] <- NA
 ```
 	
 and not
 	
 
-```{r}
+```{r eval=FALSE}
 weights[4] <- "NA"
 ```
 
@@ -2131,7 +2203,7 @@ pc.plot <- gl.pcoa.plot(pca, gl)
 
 The plot shows nice separation of the geographic locations, which indicates that the individuals from each physical location have distinct allelic frequency profiles. Tuggeranong stands out as distinctive, to the point that if you had an unknown individual from that locality, it could be assigned to Tuggeranong by its allelic profile across the 1073 loci.
 
-Kowen is also quite distinct, but the allelic profiles individuals from the other two localities abut. There appears to be evidence of some migration between Googong and Royalla as indicated by individuals in each with allelic profiles characteristic of the other. Similarly, some Royalla individuals appear to have migrated to Kowen and one in the other direction. The unknown (purple) individuals are best assigned to Royalla.
+Kowen is also quite distinct, but the allelic profiles from the other two localities abut. There appears to be evidence of some migration between Googong and Royalla as indicated by individuals in each with allelic profiles characteristic of the other. Similarly, some Royalla individuals appear to have migrated to Kowen and one in the other direction. The unknown (purple) individuals are best assigned to Royalla.
 
 We hope that you can see the power of this exploratory visual technique.
 If you want to identify the migrants, you can use the parameter `interactive=TRUE` and mouse-over the points to obtain their identities.

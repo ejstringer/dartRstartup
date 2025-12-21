@@ -13,4 +13,6 @@ Depends:
     R (>= 3.5)
 LazyData: true
 Imports: 
-    learnr
+    learnr,
+    dartR.base,
+    dartR.sexlinked
