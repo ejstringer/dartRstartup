@@ -35,22 +35,17 @@ source('./www/reassign_ind_function.R')
 library(dartRstartup)
 
 ```
-
-
-
 ## Main menu {#custom data-progressive="FALSE"}
 
 It is time to start working in the dartRverse! Welcome!
 
 This is your hands on introduction to the basics of working with [dartR](https://github.com/green-striped-gecko/dartRverse?tab=readme-ov-file#dartrverse-). The eBook [[Getting Started with dartR](http://dartr.biomatix.org/dartR)]{style="color:#ff0000;"} covers the basic theory in a series of Chapters. The eBook then links to the Worked Examples provided here. These take you by the hand to progress through some examples which allows you to repeat the analyses in the RStudio Editor or to branch out and follow any ideas or other analyses that might strike you as interesting on the way. 
 
+### Worked Examples
 
+The Worked Examples listed below are referred to in the eBook [[Getting Started with dartR](http://dartr.biomatix.org/dartR)]{style="color:#ff0000;"}. You will be directed to these as you progress through the eBook. 
 
-### Worked examples and exercises 
-
-The first part of this tutorial are the worked examples, where we walk you through the process step by step. Following the worked examples you will get the chance to test your knowledge with the exercises, using real data to process datasets that have been used in scientific literature! 
-
-**List of worked examples:**
+**List of Worked Examples:**
 
 - [Worked Ex 2-1: Data Structures] *optional*
 
@@ -70,19 +65,34 @@ The first part of this tutorial are the worked examples, where we walk you throu
 
 - [Worked Ex 6-1: Exploratory Visualization]
 
-**Exercises**
+### Exercises
 
-- [Worked Example Exercises]
+The Exercises listed below are referred to in the eBook [[Getting Started with dartR](http://dartr.biomatix.org/dartR)]{style="color:#ff0000;"} and associated with particular Chapters. You will be directed to these as you progress through the eBook. 
+
+**List Exercises**
+
+-[Exercise 3-1: Reading in 1-Row Format]
+-[Exercise 3-2: Reading in SilicoDArT Data]
+-[Exercise 3-3. Reading in vcf data (Arabian Oryx)]
+-[Exercise 4-1: Assessing SNP Data]
+-[Exercise 4-2: Assessing SilicoDArT Data]
+-[Exercise 4-3: Using Recode Tables]
+-[Exercise 4-4: Examining Platypus SNP Data]
+-[Exercise 4-5: QC on the Platypus Data]
+-[Exercise 4-6: Sub-setting the Platypus Data]
+-[Exercise 5-1: Filtering the Platypus Dataset]
+-[Exercise 5-2: Filtering the Turtle Dataset]
+-[Exercise 6-1: Introduced Possums in New Zealand]
+
+The Integrative Exercises listed below are referred to in the eBook [[Getting Started with dartR](http://dartr.biomatix.org/dartR)]{style="color:#ff0000;"} and are to be undertaken when you have completed all chapters.
+
+**List of Integrative Exercises**
 
 - [Exercise 7-1: Camaroon Macrobrachium]
-
 - [Exercise 7-2: Western Sawshell Turtle]
-
 - [Exercise 7-3: Northern Quoll]
 
-
-
-Don't forget that all aspects of the material are beneficial for learning. The ebook for being introduced to the theory and methods, the worked examples to gain experience in the application, and finally the exercises to apply everything you have learned.
+Don't forget that all aspects of the material are beneficial for learning -- the eBook for an introduction to the theory and methods, the Worked Examples to gain experience with dartR functions and how they are combined in a workflow and finally the Exercises to apply everything you have learned without coaching.
 
 <small>If you can't see the left sidebar, you just need to make the tutorial panel wider.</small>
 
