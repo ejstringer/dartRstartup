@@ -31,7 +31,25 @@ library(dartR.sexlinked)
 gl.set.verbosity(3)
 
 #library(dartRintro) # for tutorial data
-source(file.path(dirname(knitr::current_input()), "www", "reassign_ind_function.R"))
+# Locate helper script reliably (works in local dev and when installed)
+p <- file.path("www", "reassign_ind_function.R")
+
+# If render is happening from repo root
+if (!file.exists(p)) {
+  p <- file.path("inst", "tutorials", "getting-started", "www", "reassign_ind_function.R")
+}
+
+# If running from an installed package
+if (!file.exists(p)) {
+  p_pkg <- system.file("tutorials/getting-started/www/reassign_ind_function.R",
+                       package = "dartRstartup")
+  if (nzchar(p_pkg)) p <- p_pkg
+}
+
+if (!file.exists(p)) {
+  stop("Cannot find reassign_ind_function.R (tried local and installed locations).")
+}
+source(p)
 library(dartRstartup)
 
 ```
