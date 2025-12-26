@@ -666,7 +666,8 @@ Many R functions have an option to specify whether or not to exclude missing val
 mean(weights,na.rm=TRUE)
 ```
 
-### Winding up {data-progressive="false"}
+## {data-progressive="false"}
+### Winding up 
 
 You have now finished Worked Example 2-1 so return to the eBook for further instructions, or return to the MAIN MENU to select the next worked example.
 
