@@ -132,8 +132,7 @@ Any troubles or tribulations with coding in dartR, we have a great community tha
 Pick your Worked Example or Exercise from the Menu.
 <p>Good luck on your dartR journey! 😁</p>
 
-
-## Worked Ex 2-1: Data Structures {data-progressive=TRUE}
+#### Worked Ex 2-1: Data Structures
 
 ### Objects in R
 
