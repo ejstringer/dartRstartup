@@ -165,8 +165,6 @@ log
 class(log)
 ```
 
-###
-
 ### Vectors
 
 A vector is an object containing an ordered set of values all of the same type. Vectors are the fundamental building blocks of data in R so we visit vectors in some detail here.
@@ -668,11 +666,11 @@ Many R functions have an option to specify whether or not to exclude missing val
 mean(weights,na.rm=TRUE)
 ```
 
-### Winding up
+### Winding up {data-progressive="false"}
 
 You have now finished Worked Example 2-1 so return to the eBook for further instructions, or return to the MAIN MENU to select the next worked example.
 
-[Back to Menu](#custom){.menuButton}
+[Next Topic](#worked-ex-2-2-io){.menuButton}
 
 
 ## Worked Ex 2-2: I/O {data-progressive="true"}
