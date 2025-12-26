@@ -165,6 +165,8 @@ log
 class(log)
 ```
 
+###
+
 ### Vectors
 
 A vector is an object containing an ordered set of values all of the same type. Vectors are the fundamental building blocks of data in R so we visit vectors in some detail here.
