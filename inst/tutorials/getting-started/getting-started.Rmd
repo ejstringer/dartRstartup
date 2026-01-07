@@ -2384,13 +2384,15 @@ And that brings us to the end of the Worked Examples for Chapter 6.
 
 ## Exercise 6-1: Introduced Possums in New Zealand
 
+### {data-continue-text="Next Exercise"}
+
 The common brushtail possum Trichosurus vulpecula from the Australian mainland and from Tasmania were introduced multiple times to New Zealand to become one of New Zealand’s most significant pests. Photo: WikiCommons.
 
 Possums in the Hawkes Bay region of New Zealand consist of at least two overlapping populations. Campbell et al. (2021, Biological Invasions 23:3831-45) examined possums from this region using SNP genotypes to examine the origins and population structure of those possums and compare their genetic diversity to animals sampled from Australia.
 
 In this exercise, we will restrict our attention to samples from southeastern Australia, Tasmania and the Flinders Island in the intervening Bass Strait to see what an exploratory analysis using PCA might reveal as hypotheses for further testing.
 
-The data have been saved in binary form in [NZ_possums.Rdata]{style="color:blue;". Note that the data have been modified for educational purposes, and in particular, possum populations from Arnhem Land and the Atherton Tablelands of northern Australia have been excluded.
+The data have been saved in binary form in [NZ_possums.Rdata]{style="color:blue;"}. Note that the data have been modified for educational purposes, and in particular, possum populations from Arnhem Land and the Atherton Tablelands of northern Australia have been excluded.
 
 Be sure to set global verbosity to 3.
 
